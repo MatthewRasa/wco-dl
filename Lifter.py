@@ -106,7 +106,7 @@ class Lifter(object):
         page = self.request_c(url)
         soup = BeautifulSoup(page.text, 'html.parser')
 
-        iframe_encoded = repr(soup.find("meta", {"itemprop": "embedURL"}).next_element.next_element)
+        iframe_encoded = repr(soup.find("meta", {"itemprop": "embedURL"}).previous_element)
         tag = re.search("^<([a-zA-Z]*)", iframe_encoded).group(1)
         if tag == 'script':
             iframe_decoded = self._decode_iframe(iframe_encoded)
